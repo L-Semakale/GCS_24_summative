@@ -64,9 +64,9 @@ while true; do
 
     case $choice in
         1) create_student ;;
-        2) view_students ;;
+        2) update_student ;;
         3) delete_student ;;
-        4) update_student ;;
+        4) view_students ;;
         5) exit ;;
         *) echo "Invalid choice. Please try again." ;;
     esac
