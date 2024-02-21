@@ -32,18 +32,17 @@ view_students() {
 # Function to delete a student by ID
 delete_student() {
     read -p "Enter student ID to delete: " delete_id
-    sed -i "/^$delete_id:/d" "$STUDENTS_FILE"
+    sed -i "/,$delete_id\$/d" $STUDENTS_FILE
     echo "Student with ID $delete_id deleted successfully."
 }
 
 # Function to update a student record by ID
 update_student() {
 	read -p "Enter old ID to edit" old_id
+	if grep -q "^$old_id" "$STUDENTS_FILE"; then
     read -p "Enter student ID to update: " update_id
     read -p "Enter new email to update:" update_email
     read -p "Enter new age to update:" update_age
-    if grep -q "^$update_id:$update_email:$update_age" "$STUDENTS_FILE"; then
-        sed -i "/^$old_id:/d" "$STUDENTS_FILE"
 	echo "$update_id:$update_email:$update_age:" >>"$STUDENTS_FILE"
         
     else
