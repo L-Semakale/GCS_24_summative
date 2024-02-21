@@ -1,73 +1,58 @@
-#!/bin/bash
-
-# File to store student records
-STUDENTS_FILE="students-list_1023.txt"
-
-# Function to create a student record
-create_student() {
-    echo "Enter student details:"
-    read -p "Email: " email
-    read -p "Age: " age
-    read -p "Student ID: " student_id
-
-    # Check if student ID already exists
-    if grep -q "^$student_id:" "$STUDENTS_FILE"; then
-        echo "Student with ID $student_id already exists."
-    else
-        echo "$email:$age:$student_id" >> "$STUDENTS_FILE"
-        echo "Student record created successfully."
-    fi
-}
-
-# Function to view all students
-view_students() {
-    if [ -s "$STUDENTS_FILE" ]; then
-        echo "List of students:"
-        cat "$STUDENTS_FILE"
-    else
-        echo "No students found."
-    fi
-}
-
-# Function to delete a student by ID
-delete_student() {
-    read -p "Enter student ID to delete: " delete_id
-    sed -i "/^$delete_id:/d" "$STUDENTS_FILE"
-    echo "Student with ID $delete_id deleted successfully."
-}
-
-# Function to update a student record by ID
-update_student() {
-	read -p "Enter old ID to edit" old_id
-    read -p "Enter student ID to update: " update_id
-    read -p "Enter new email to update:" update_email
-    read -p "Enter new age to update:" update_age
-    if grep -q "^$update_id:$update_email:$update_age" "$STUDENTS_FILE"; then
-        sed -i "/^$old_id:/d" "$STUDENTS_FILE"
-	echo "$update_id:$update_email:$update_age:" >>"$STUDENTS_FILE"
-        
-    else
-        echo "Student with ID $old_id not found."
-    fi
-}
-
-# Main menu
-while true; do
-    echo -e "\nMenu:"
-    echo "1. Create Student Record"
-    echo "2. View All Students"
-    echo "3. Delete Student"
-    echo "4. Update Student Record"
-    echo "5. Exit"
-
-    read -p "Enter your choice: " choice
-
-    case $choice in
-        1) create_student ;;
-        2) view_students ;;
-        3) delete_student ;;
-        4) update_student ;;
-        5) exit ;;
-        *) echo "Invalid choice. Please try again." ;;
-    esac
-done
+ #!/bin/bash
+ while true
+ do
+ echo"options:
+ 1.Registeration
+ 2.View all students
+ 3.Delete a record
+ 4.Update a record
+ 5.Exit application
+ (Choose an option between 1-5)"
+ read option
+ if(($option==1))
+ then
+ echo"What is your student email?"
+ read email
+ echo"How old are you?"
+ read age 
+ echo"What is your student ID?"
+ read ID
+ if [-f students-list_1023.txt ]; then
+ echo$email,$age,$ID>>students-list_1023.txt
+ else
+ echo $email,$age,$ID>students-list_1023.txt
+ fi
+ elif(($option==2))
+ then
+ if [-f students-list_1023.txt ]; then
+ cat students-list_1023.txt
+ else
+ echo"No students"
+ fi
+ elif(($option==3))
+ then
+ echo"Enter the ID to delete"
+ read ID
+ sed-i"/,$ID\$/d"students-list_1023.txt
+ elif(($option==4))
+ then
+ echo"Please enter the student ID"
+ read Student_ID
+ if grep",$Student_ID$"students-list_1023.txt
+ then
+ echo"What is your updated student email?"
+ read updated_email
+ echo"What is your new age?"
+read new_age
+ old_record=$(grep",$Student_ID$"students-list_1023.txt)
+ sed-i"s/$old_record/$(echo$updated_email,$new_age,$Student_ID)/g"
+ students-list_1023.txt
+ else
+ echo"The provided Student ID is not registered.Please try again"
+ fi
+ elif(($option==5))
+ then
+ exit 1
+ fi
+ done
+ 
