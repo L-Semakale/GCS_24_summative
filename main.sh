@@ -27,26 +27,31 @@ delete_student() {
 }
 
 # Function to update a student record by ID
-update_student() {
-	read -p "Enter old ID to edit" old_id
-	if grep -q "^$old_id" "$STUDENTS_FILE"; then
-    read -p "Enter student ID to update: " update_id
-    read -p "Enter new email to update:" update_email
-    read -p "Enter new age to update:" update_age
-	echo "$update_id:$update_email:$update_age:" >>"$STUDENTS_FILE"
-        
-    else
-        echo "Student with ID $old_id not found."
-    fi
+update_student(){
+	 elif(($option==4))
+ then
+ echo"Please enter the student ID"
+ read Student_ID
+ if grep",$Student_ID$"students-list_1023.txt
+ then
+ echo"What is your updated student email?"
+ read updated_email
+ echo"What isyour new age?"
+read new_age
+ old_record=$(grep",$Student_ID$"$STUDENTS_FILE)
+ sed -i"s/$old_record/$(echo $updated_email,$new_age,$Student_ID)/g"
+ $STUDENTS_FILE
+ else
+ echo"The provided Student ID is not registered.Please try again"
+ fi
 }
-# Function to view all students
-view_students() {
-    if [ -s "$STUDENTS_FILE" ]; then
-        echo "List of students:"
-        cat "$STUDENTS_FILE"
-    else
-        echo "No students found."
-    fi
+#view all students
+view_students (){
+ if [-f $STUDENTS_FILE ]; then
+ cat $STUDENTS_FILE
+ else
+ echo"Nostudents"
+ fi
 }
 
 
