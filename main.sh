@@ -10,22 +10,12 @@ create_student() {
     read -p "Age: " age
     read -p "Student ID: " student_id
 
-    # Check if student ID already exists
+# Check if student ID already exists
     if grep -q "^$student_id:" "$STUDENTS_FILE"; then
         echo "Student with ID $student_id already exists."
     else
         echo "$email:$age:$student_id" >> "$STUDENTS_FILE"
         echo "Student record created successfully."
-    fi
-}
-
-# Function to view all students
-view_students() {
-    if [ -s "$STUDENTS_FILE" ]; then
-        echo "List of students:"
-        cat "$STUDENTS_FILE"
-    else
-        echo "No students found."
     fi
 }
 
@@ -49,14 +39,25 @@ update_student() {
         echo "Student with ID $old_id not found."
     fi
 }
+# Function to view all students
+view_students() {
+    if [ -s "$STUDENTS_FILE" ]; then
+        echo "List of students:"
+        cat "$STUDENTS_FILE"
+    else
+        echo "No students found."
+    fi
+}
+
 
 # Main menu
 while true; do
     echo -e "\nMenu:"
     echo "1. Create Student Record"
-    echo "2. View All Students"
+    echo "2. Update Student Record"
     echo "3. Delete Student"
-    echo "4. Update Student Record"
+    echo "4. View All Students"
+
     echo "5. Exit"
 
     read -p "Enter your choice: " choice
