@@ -28,10 +28,8 @@ delete_student() {
 
 # Function to update a student record by ID
 update_student(){
-	 elif(($option==4))
- then
- echo"Please enter the student ID"
- read Student_ID
+
+ read -p"Please enter the student ID:" Student_ID
  if grep",$Student_ID$"students-list_1023.txt
  then
  echo"What is your updated student email?"
