@@ -38,12 +38,16 @@ delete_student() {
 
 # Function to update a student record by ID
 update_student() {
+	read -p "Enter old ID to edit" old_id
     read -p "Enter student ID to update: " update_id
-    if grep -q "^$update_id:" "$STUDENTS_FILE"; then
-        sed -i "/^$update_id:/d" "$STUDENTS_FILE"
-        create_student
+    read -p "Enter new email to update:" update_email
+    read -p "Enter new age to update:" update_age
+    if grep -q "^$update_id:$update_email:$update_age" "$STUDENTS_FILE"; then
+        sed -i "/^$old_id:/d" "$STUDENTS_FILE"
+	echo "$update_id:$update_email:$update_age:" >>"$STUDENTS_FILE"
+        
     else
-        echo "Student with ID $update_id not found."
+        echo "Student with ID $old_id not found."
     fi
 }
 
