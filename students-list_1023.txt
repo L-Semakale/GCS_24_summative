@@ -1,9 +1,5 @@
 c.umugabeka@alustudent.com:20:123
 c.umugabeka@alustudent.com:20:123
-<<<<<<< HEAD
-Florence@gmail.com:15:3009
-=======
 c.umugabeka@alustudent.com:20:123
 ngmunezero@gmail.com:23:123
 umugabecarine@gmail.com:23:098
->>>>>>> 5decb6c9194aa1c21c6e755d218281950883d387
